@@ -1,0 +1,27 @@
+{
+  "name": "perfumerlabs/perfumer-framework-pack",
+  "type": "library",
+  "description": "Collection of annotations for Perfumer Framework",
+  "keywords": ["generator"],
+  "homepage": "https://github.com/perfumerlabs/perfumer-framework-pack",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Ilyas Makashev",
+      "email": "mehmatovec@gmail.com",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "perfumerlabs/perfumer": "v0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Perfumerlabs\\PerfumerFrameworkPack\\": "src/"
+    }
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
