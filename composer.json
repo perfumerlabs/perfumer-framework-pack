@@ -14,7 +14,7 @@
   ],
   "require": {
     "php": ">=7.1.0",
-    "perfumerlabs/perfumer": "v0.1.0"
+    "perfumerlabs/perfumer": "*"
   },
   "autoload": {
     "psr-4": {
