@@ -10,6 +10,16 @@ use Perfumerlabs\Perfumer\ContractAnnotation\Set;
  */
 class SetFromAuthUserId extends Set
 {
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $value;
+
     public function onBuild(): void
     {
         parent::onBuild();

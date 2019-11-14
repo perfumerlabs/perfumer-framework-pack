@@ -10,6 +10,16 @@ use Perfumerlabs\Perfumer\ContractAnnotation\Set;
  */
 class SetFromField extends Set
 {
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $value;
+
     public function onCreate(): void
     {
         if (!$this->value) {

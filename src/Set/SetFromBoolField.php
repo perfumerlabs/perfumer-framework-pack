@@ -11,6 +11,16 @@ use Perfumerlabs\Perfumer\ContractAnnotation\Set;
 class SetFromBoolField extends Set
 {
     /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $value;
+
+    /**
      * @var bool
      */
     public $force = false;
