@@ -21,6 +21,12 @@
       "Perfumerlabs\\PerfumerFrameworkPack\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Example\\": "example/src/",
+      "Generated\\Annotation\\": "example/generated/annotation/"
+    }
+  },
   "config": {
     "preferred-install": "dist"
   }

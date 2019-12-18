@@ -26,7 +26,7 @@ class TransactionEnd extends Code
             } catch (\Throwable $e) {
                 $con->rollBack();
                 
-                if ($this->getApplication()->getBuildType() === \'dev\') {
+                if ($this->getApplication()->getBuildType() !== \'prod\') {
                     throw $e;
                 }
             
