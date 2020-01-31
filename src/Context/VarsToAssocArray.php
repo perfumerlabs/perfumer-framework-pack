@@ -31,7 +31,16 @@ abstract class VarsToAssocArray extends Code
 
         if ($this->reflection_method) {
             foreach ($this->reflection_method->getParameters() as $parameter) {
-                $this->getMethodData()->requireLocalVariable($parameter->getName());
+                $parameter_name = $parameter->getName();
+                $in_parameter_name = 'in_' . $parameter->getName();
+
+                $parameter_value = $this->$in_parameter_name ?: $this->$parameter_name;
+
+                if (!$parameter_value) {
+                    $parameter_value = $parameter->getName();
+                }
+
+                $this->getMethodData()->requireLocalVariable($parameter_value);
             }
         }
     }
@@ -43,7 +52,16 @@ abstract class VarsToAssocArray extends Code
         $code = sprintf('$%s = [', $this->out);
 
         foreach ($this->reflection_method->getParameters() as $parameter) {
-            $code .= sprintf('\'%s\' => $%s,', $parameter->getName(), $parameter->getName());
+            $parameter_name = $parameter->getName();
+            $in_parameter_name = 'in_' . $parameter->getName();
+
+            $parameter_value = $this->$in_parameter_name ?: $this->$parameter_name;
+
+            if (!$parameter_value) {
+                $parameter_value = $parameter->getName();
+            }
+
+            $code .= sprintf('\'%s\' => $%s,', $parameter_value, $parameter_value);
         }
 
         $code .= '];';
