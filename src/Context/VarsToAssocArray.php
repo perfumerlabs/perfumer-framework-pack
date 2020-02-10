@@ -61,7 +61,7 @@ abstract class VarsToAssocArray extends Code
                 $parameter_value = $parameter->getName();
             }
 
-            $code .= sprintf('\'%s\' => $%s,', $parameter_value, $parameter_value);
+            $code .= sprintf('\'%s\' => $%s,', $parameter->getName(), $parameter_value);
         }
 
         $code .= '];';
