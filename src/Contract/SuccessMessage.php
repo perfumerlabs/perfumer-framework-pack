@@ -19,6 +19,10 @@ class SuccessMessage extends Code
     {
         parent::onBuild();
 
-        $this->_code = '$_success_message = \'' . $this->message . '\';';
+        if ($this->getMethodData()->hasLocalVariable($this->message)) {
+            $this->_code = '$_success_message = $' . $this->message . ';';
+        } else {
+            $this->_code = '$_success_message = \'' . $this->message . '\';';
+        }
     }
 }

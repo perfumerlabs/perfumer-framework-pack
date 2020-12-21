@@ -26,6 +26,10 @@ class ErrorMessage extends Code
     {
         parent::onBuild();
 
-        $this->_code = '$_error_message = \'' . $this->message . '\';';
+        if ($this->getMethodData()->hasLocalVariable($this->message)) {
+            $this->_code = '$_error_message = $' . $this->message . ';';
+        } else {
+            $this->_code = '$_error_message = \'' . $this->message . '\';';
+        }
     }
 }
