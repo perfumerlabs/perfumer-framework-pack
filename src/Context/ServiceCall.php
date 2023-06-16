@@ -13,7 +13,14 @@ abstract class ServiceCall extends ComplexClassCall
 
     public function onCreate(): void
     {
-        $this->_instance = '$this->s(\'' . $this->_service_name . '\')->';
+        $varName = '$_service_'.str_replace('.', '_', $this->_service_name);
+
+        $this->_instance = $varName.'->';
+
+        $this->_before_code .= "
+        /** @var $varName \\{$this->_class}  */
+        $varName = \$this->s('{$this->_service_name}');
+        ";
 
         parent::onCreate();
     }

@@ -4,7 +4,7 @@ namespace Perfumerlabs\PerfumerFrameworkPack\Context;
 
 use Perfumerlabs\Perfumer\ContractAnnotation\ComplexClassCall;
 
-abstract class RepositoryCall extends ComplexClassCall
+abstract class RepositoryCall extends ServiceCall
 {
     /**
      * @var string
@@ -13,7 +13,7 @@ abstract class RepositoryCall extends ComplexClassCall
 
     public function onCreate(): void
     {
-        $this->_instance = '$this->s(\'repository.' . $this->_repository_name . '\')->';
+        $this->_service_name = 'repository.' . $this->_repository_name;
 
         parent::onCreate();
     }

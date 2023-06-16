@@ -4,7 +4,7 @@ namespace Perfumerlabs\PerfumerFrameworkPack\Context;
 
 use Perfumerlabs\Perfumer\ContractAnnotation\ComplexClassCall;
 
-abstract class DomainCall extends ComplexClassCall
+abstract class DomainCall extends ServiceCall
 {
     /**
      * @var string
@@ -13,7 +13,7 @@ abstract class DomainCall extends ComplexClassCall
 
     public function onCreate(): void
     {
-        $this->_instance = '$this->s(\'domain.' . $this->_domain_name . '\')->';
+        $this->_service_name = 'domain.' . $this->_domain_name;
 
         parent::onCreate();
     }

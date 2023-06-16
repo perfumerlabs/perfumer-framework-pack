@@ -4,7 +4,7 @@ namespace Perfumerlabs\PerfumerFrameworkPack\Context;
 
 use Perfumerlabs\Perfumer\ContractAnnotation\ComplexClassCall;
 
-abstract class FacadeCall extends ComplexClassCall
+abstract class FacadeCall extends ServiceCall
 {
     /**
      * @var string
@@ -13,7 +13,7 @@ abstract class FacadeCall extends ComplexClassCall
 
     public function onCreate(): void
     {
-        $this->_instance = '$this->s(\'facade.' . $this->_facade_name . '\')->';
+        $this->_service_name = 'facade.' . $this->_facade_name;
 
         parent::onCreate();
     }
