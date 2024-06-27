@@ -2,31 +2,36 @@
 
 namespace Perfumerlabs\PerfumerFrameworkPack\Set;
 
+use Perfumerlabs\Perfumer\ArgumentParseTrait;
 use Perfumerlabs\Perfumer\ContractAnnotation\Set;
 
 /**
  * @Annotation
  * @Target({"CLASS", "METHOD", "ANNOTATION"})
  */
+#[\Attribute(
+    \Attribute::TARGET_METHOD |
+    \Attribute::TARGET_CLASS |
+    \Attribute::IS_REPEATABLE
+)]
 class SetFromIntField extends Set
 {
-    /**
-     * @var string
-     */
-    public $name;
+    use ArgumentParseTrait;
 
-    /**
-     * @var string
-     */
-    public $value;
-
-    /**
-     * @var bool
-     */
-    public $force = false;
+    public function __construct(
+        public $_values = null,
+        public $force = false,
+        ...$_args
+    )
+    {
+        $_args = $this->parseArgument($this->_values, $_args, ['force']);
+        parent::__construct(...$_args);
+    }
 
     public function onCreate(): void
     {
+        $this->tags = ['controller'];
+
         if (!$this->value) {
             $this->value = $this->name;
         }

@@ -2,23 +2,32 @@
 
 namespace Perfumerlabs\PerfumerFrameworkPack\Contract;
 
+use Perfumerlabs\Perfumer\ArgumentParseTrait;
 use Perfumerlabs\Perfumer\ContractAnnotation\Code;
 
 /**
  * @Annotation
  * @Target({"CLASS", "METHOD", "ANNOTATION"})
  */
+#[\Attribute(
+    \Attribute::TARGET_METHOD |
+    \Attribute::TARGET_CLASS |
+    \Attribute::IS_REPEATABLE
+)]
 class Content extends Code
 {
-    /**
-     * @var string
-     */
-    public $name;
+    use ArgumentParseTrait;
 
-    /**
-     * @var string
-     */
-    public $value;
+    public function __construct(
+        public $_values = null,
+        public $name = null,
+        public $value = null,
+        ...$_args
+    )
+    {
+        $_args = $this->parseArgument($this->_values, $_args, ['name', 'value']);
+        parent::__construct(...$_args);
+    }
 
     public function onBuild(): void
     {
